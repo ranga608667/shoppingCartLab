@@ -34,4 +34,8 @@ public class Cart {
         }
     return count;
     }
+
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
 }

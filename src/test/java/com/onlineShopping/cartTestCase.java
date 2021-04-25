@@ -57,12 +57,22 @@ public class cartTestCase {
         cart.addItem(new Item("apple", 3.00));
         cart.addItem(new Item("banana", 2.00));
 
-        boolean[] expected;
-
-        boolean[] actual;
-        assertArrayEquals(expected, actual);
+        int expected=0;
+        int actual=0;
+        assertEquals(expected, actual);
     }
 
+    @Test
+    void removeItems(){
+        Cart cart = new Cart();
 
+        cart.removeItem(new Item("apple", 3.00));
+        cart.addItem(new Item("apple", 3.00));
+        cart.addItem(new Item("banana", 2.00));
+
+        int expected=0;
+        int actual=0;
+        assertEquals(expected, actual);
+    }
 
 }
