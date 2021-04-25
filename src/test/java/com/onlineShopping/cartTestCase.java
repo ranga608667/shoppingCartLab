@@ -2,49 +2,67 @@ package com.onlineShopping;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class cartTestCase {
     @Test
     void cartEmpty (){
-        CartTest cartTest = new CartTest();
-        int expected=0;
-        int actual = cartTest.getValue();
+        Cart cart = new Cart();
+        double expected=0;
+        double actual = cart.size();
         assertEquals(expected,actual);
+    }
 
-        int expecteditem=0;
-        int actualItem = cartTest.getItem();
-        assertEquals(expecteditem,actualItem);
+   @Test
+    void addItem(){
+     Cart cart = new Cart();
+
+     cart.addItem(new Item("apple", 3.00));
+     double expected=3.00;
+     double actual = cart.getTotal();
+
+     assertEquals(expected,actual);
+ }
+
+    @Test
+    void addDifferentItem(){
+        Cart cart = new Cart();
+
+        cart.addItem(new Item("apple", 3.00));
+        cart.addItem(new Item("banana", 2.00));
+        double expected=5.00;
+        double actual = cart.getTotal();
+
+        assertEquals(expected,actual);
     }
 
     @Test
-    void cartAddTwoItems(){
-        CartTest cartTest1 = new CartTest();
-        int expected = 5;
-        int actual=cartTest1.addValue(2,3);
+    void addSameItemtwice(){
+        Cart cart = new Cart();
+
+        cart.addItem(new Item("apple", 3.00));
+        cart.addItem(new Item("apple", 3.00));
+        int expected=2;
+        int actual = cart.getQuantity("apple");
+
         assertEquals(expected,actual);
     }
 
     @Test
-    void cartAddManyItems(){
-        CartTest cartTest1 = new CartTest();
-        int expected = 10;
-        int actual=cartTest1.addValue(2,3,5);
-        assertEquals(expected,actual);
+    void addItems(){
+        Cart cart = new Cart();
+
+        cart.addItem(new Item("apple", 3.00));
+        cart.addItem(new Item("apple", 3.00));
+        cart.addItem(new Item("banana", 2.00));
+
+        boolean[] expected;
+
+        boolean[] actual;
+        assertArrayEquals(expected, actual);
     }
 
-    // Test git Push
+
+
 }
-
-//
-//    Given that I a new shopper
-//        When I begin shopping
-//        Then I expect my cart to be empty
-
-//    Given I have an empty cart
-//    When I add an item
-//        Then I expect the subtotal to be the price of the item
-//
-//        Given I have a cart with some items
-//        When I add another item
-//        Then I expect the subtotal to reflect the sum of all the items in my cart
