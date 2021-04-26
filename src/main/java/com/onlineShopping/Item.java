@@ -13,7 +13,7 @@ public class Item {
     Item(String name, double price){
         this.name =name;
         this.price=price;
-    //    this.quantity=quantity;
+     this.quantity=1;
      //   System.out.println(this.name);
     }
 
@@ -24,5 +24,9 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    int getQuantity(){
+        return quantity;
     }
 }

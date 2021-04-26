@@ -2,6 +2,8 @@ package com.onlineShopping;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -43,8 +45,10 @@ public class cartTestCase {
 
         cart.addItem(new Item("apple", 3.00));
         cart.addItem(new Item("apple", 3.00));
-        int expected=2;
-        int actual = cart.getQuantity("apple");
+
+        ArrayList<Integer> expected=new ArrayList<Integer>(Arrays.asList(2));
+        ArrayList<Integer> actual=cart.getQuantity();
+
 
         assertEquals(expected,actual);
     }
@@ -57,21 +61,24 @@ public class cartTestCase {
         cart.addItem(new Item("apple", 3.00));
         cart.addItem(new Item("banana", 2.00));
 
-        int expected=0;
-        int actual=0;
-        assertEquals(expected, actual);
+        Map<String, Integer> expected=Map.of("banana",1, "apple", 2);
+        Map<String, Integer> actual=cart.getItemizedQuantity();
+
+
+        assertEquals(expected,actual);
     }
 
     @Test
     void removeItems(){
         Cart cart = new Cart();
 
-        cart.removeItem(new Item("apple", 3.00));
         cart.addItem(new Item("apple", 3.00));
         cart.addItem(new Item("banana", 2.00));
+        cart.removeItem(new Item("apple", 3.00));
 
-        int expected=0;
-        int actual=0;
+
+        Map<String, Integer> expected=Map.of("banana",1, "apple", 1);
+        Map<String, Integer> actual=cart.getItemizedQuantity();
         assertEquals(expected, actual);
     }
 
